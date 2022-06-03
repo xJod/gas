@@ -7,10 +7,16 @@ function fetchStations(callback) {
 
 fetchStations((error, stations) => {
     if(error) { console.log(error); }
+    
     else {
+        let bensinArray = [];
+        
         let container = document.getElementById('container');
 
         for(let i = 0; i < stations['results'].length; i++) {
+            bensinArray.push(stations['results'][i]['bensin95']);
+
+
             if (!document.getElementById(`${stations['results'][i]['company']}`)) {
                 let newDiv = document.createElement('div');
                 newDiv.setAttribute('id', `${stations['results'][i]['company']}`);
@@ -24,6 +30,8 @@ fetchStations((error, stations) => {
                 container.appendChild(document.createElement('hr'));
             }
             if (document.getElementById(`${stations['results'][i]['company']}`)) {
+                
+
                 let newContainerDiv = document.createElement('div');
                 newContainerDiv.classList.add('gridClass');
 
@@ -59,5 +67,8 @@ fetchStations((error, stations) => {
         let time = `Síðast uppfært: ${dayTime}.${monthTime}.${yearTime} klukkan ${hour}:${minute}`;
         
         document.getElementById('timestamp').innerHTML = time;
+
+        document.getElementById('max').innerHTML = `Dýrast: ${Math.max.apply(Math, bensinArray)}`;
+        document.getElementById('min').innerHTML = `Ódýrast: ${Math.min.apply(Math, bensinArray)}`;
     }
 })
