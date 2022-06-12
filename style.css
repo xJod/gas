@@ -1,14 +1,20 @@
 * {
     font-family: sans-serif;
+    color: #ffffff;
 }
 
 body {
     max-width: 40em;
     margin: auto;
+    background-color: #121212;
 }
 
 header {
     text-align: center;
+}
+
+hr {
+    background-color: #ffffff;
 }
 
 .stationInfo {

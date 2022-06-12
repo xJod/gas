@@ -64,7 +64,7 @@ fetchStations((error, stations) => {
         let hour = stations['timestampApis'].slice(11, 13);
         let minute = stations['timestampApis'].slice(14, 16)
 
-        let time = `Síðast uppfært: ${dayTime}.${monthTime}.${yearTime} klukkan ${hour}:${minute}`;
+        let time = `Síðast uppfært: ${dayTime}/${monthTime}/${yearTime} klukkan ${hour}:${minute}`;
         
         document.getElementById('timestamp').innerHTML = time;
 
