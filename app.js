@@ -12,10 +12,10 @@ fetchStations((error, stations) => {
         let bensinArray = [];
         
         let container = document.getElementById('container');
+        let dropdownList = document.getElementById('dropdown-list');
 
         for(let i = 0; i < stations['results'].length; i++) {
             bensinArray.push(stations['results'][i]['bensin95']);
-
 
             if (!document.getElementById(`${stations['results'][i]['company']}`)) {
                 let newDiv = document.createElement('div');
@@ -28,6 +28,13 @@ fetchStations((error, stations) => {
                 newDiv.appendChild(newH);
                 container.appendChild(newDiv);
                 container.appendChild(document.createElement('hr'));
+
+                /* Stöð í dropdown */
+                let newDropdownItem = document.createElement('a');
+                newDropdownItem.setAttribute('href', `#${stations['results'][i]['company']}`);
+                newDropdownItem.innerHTML = `${stations['results'][i]['company']}`;
+
+                dropdownList.appendChild(newDropdownItem);
             }
             if (document.getElementById(`${stations['results'][i]['company']}`)) {
                 
@@ -72,3 +79,9 @@ fetchStations((error, stations) => {
         document.getElementById('min').innerHTML = `Ódýrast: ${Math.min.apply(Math, bensinArray)}`;
     }
 })
+
+
+function toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
